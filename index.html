@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"  ng-app="GemStore">
+<head>
+	<meta charset="UTF-8">
+	<title>Gem Store</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+	<script type="text/javascript" src="angular.min.js"></script> 
+	<script src="app.js"></script>
+</head>
+<body ng-controller="StoreController as store">
+
+	<div ng-repeat="product in store.products">
+
+	<h2> {{product.name}} 
+	<em class="pull-right"> {{product.price|currency}}
+	</em> </h2>
+	<p> {{product.description}} </p>
+	<em class="pull-right"><button ng-show="product.canPurchase"> Add to cart</button></em>
+
+	<section ng-controller="PanelController as panel">
+		<ul class= "nav nav-pills">
+			<li ng-class="{active: panel.isSelected(1)}">
+				<a href="" ng-click="panel.selectTab(1)">Description</a>
+			</li>
+			<li ng-class="{active: panel.isSelected(2)}">
+				<a href="" ng-click="panel.selectTab(2)">Specification</a>
+			</li>
+			<li ng-class="{active: panel.isSelected(3)}">
+				<a href="" ng-click="panel.selectTab(3)">Review</a>
+			</li>
+		</ul>
+		
+		<div class="panel" ng-show="panel.isSelected(1)">
+			<h4>Description</h4>
+			<blockquote>{{product.description}}</blockquote>
+		</div>
+		<div class="panel" ng-show="panel.isSelected(2)">
+			<h4>Specification</h4>
+			<blockquote>{{product.specification}}</blockquote>
+		</div>
+		<div class="panel" ng-show="panel.isSelected(3)">
+			<h4>Reviews</h4>
+			<!--form name="reviewForm">
+				<select ng-model=>
+					<option value="1">1 star</option>
+				</select>
+				<textarea></textarea>
+				<input type="email">
+				<button class="btn btn-primary">Submit Review</button>
+			</form-->
+			<!--blockquote ng-repeat="review in product.reviews">
+			<b>Stars:{{review.stars}}</b>
+			{{review.boby}}
+			<cite>by: {{review:author}}</cite>
+			</blockquote-->
+		</div>
+
+	</section>
+	</div>
+
+</body>
+</html>
